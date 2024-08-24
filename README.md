@@ -64,7 +64,10 @@ source venv/bin/activate  # On Windows, use: venv\Scripts\activate
 ### Install the required packages:
 
 pip install flask
-Set up the LLM (Language Model): The application uses llm_utils.py to interact with the language model. This file contains a generate_response function that needs to be set up for your specific LLM.
+
+### Set up the LLM (Language Model): 
+
+The application uses llm_utils.py to interact with the language model. This file contains a generate_response function that needs to be set up for your specific LLM.
 
 Currently, the application is configured to work with LM Studio using the Llama 3.1 Instruct 7B Q8_0 GGUF model. If you're using a different LLM or service, you'll need to modify the generate_response function in llm_utils.py accordingly.
 
@@ -74,7 +77,8 @@ python app.py
 
 ### Access the application: Open a web browser and go to http://127.0.0.1:5501/
 
-Customizing the LLM
+### Customizing the LLM
+
 If you're using a different LLM or service, you'll need to modify the generate_response function in llm_utils.py. This function should take three parameters:
 
 system: A system message or prompt
