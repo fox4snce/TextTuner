@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer and Modifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar left-sidebar">
+            <h2>Categories</h2>
+            <div id="categories"></div>
+        </div>
+        <div class="main-content">
+            <textarea id="text-input" rows="15" placeholder="Enter your text here..."></textarea>
+            <div>
+                <button id="analyze-btn">Analyze</button>
+                <button id="modify-btn">Modify</button>
+            </div>
+        </div>
+        <div class="sidebar right-sidebar">
+            <h2>Information</h2>
+            <p>Enter your text in the text area, then click "Analyze" to generate categories. Select options from the dropdowns and click "Modify" to change the text.</p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#analyze-btn').click(function() {
+                const text = $('#text-input').val();
+                $.post('/', { text: text, action: 'analyze' }, function(data) {
+                    let categoriesHtml = '';
+                    for (const [category, levels] of Object.entries(data)) {
+                        categoriesHtml += `<div class="category">
+                            <label>${category}</label>
+                            <select name="${category}">
+                                <option value="">Select an option</option>
+                                ${levels.map(level => `<option value="${level}">${level}</option>`).join('')}
+                            </select>
+                        </div>`;
+                    }
+                    $('#categories').html(categoriesHtml);
+                });
+            });
+
+            $('#modify-btn').click(function() {
+                const text = $('#text-input').val();
+                const formData = $('select').serializeArray().filter(item => item.value !== "");
+                formData.push({ name: 'text', value: text });
+                formData.push({ name: 'action', value: 'modify' });
+
+                $.post('/', formData, function(data) {
+                    $('#text-input').val(data.modified_text);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

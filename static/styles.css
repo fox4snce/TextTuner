@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    padding: 20px;
+    background-color: #f0f0f0;
+    overflow-y: auto;
+}
+
+.left-sidebar {
+    width: 33.33%; /* One-third of the page */
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%; /* Adjust this value to balance with right sidebar */
+}
+
+.right-sidebar {
+    width: 16.67%; /* Remaining space (100% - 33.33% - 50%) */
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.category {
+    margin-bottom: 15px;
+}
+
+.category label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.category select {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+}
+
+h2 {
+    margin-top: 0;
+}
