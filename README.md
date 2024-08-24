@@ -49,9 +49,9 @@ TextTuner is the first example of Ontology-Based Prompt Engineering, demonstrati
 Python 3.7 or higher
 pip (Python package installer)
 
-##Installation Steps
+## Installation Steps
 
-###Clone the repository:
+### Clone the repository:
 
 git clone https://github.com/fox4snce/TextTuner.git
 cd TextTuner
